@@ -1,27 +1,22 @@
 package com.codesmell.messagechain.bad;
 
 
-//https://sourcemaking.com/refactoring/smells/message-chains
 public class MessageChainBad {
 
     public static void main(String[] args) {
         Person employee = buildEmployee();
-        System.out.println("The manager is " + employee.getDepartment().getManager().getName());
+        System.out.println("The manager is " + employee.getManagerName());
     }
 
     private static Person buildEmployee() {
         return new Person("Bob", new Department(new Person("Alice")));
     }
+
 }
 
 class Person {
     private Department department;
-
     private final String name;
-
-    Department getDepartment() {
-        return department;
-    }
 
     Person(String name) {
         this(name, null);
@@ -36,6 +31,9 @@ class Person {
         return name;
     }
 
+    String getManagerName() {
+        return department.getManager().getName();
+    }
 }
 
 class Department {
@@ -50,4 +48,3 @@ class Department {
     }
 
 }
-
