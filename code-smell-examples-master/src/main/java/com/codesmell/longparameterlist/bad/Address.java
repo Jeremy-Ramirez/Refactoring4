@@ -1,4 +1,4 @@
-package com.codesmell.longparameterlist.good;
+package com.codesmell.longparameterlist.bad;
 
 class Address {
     private final String zipCode;
